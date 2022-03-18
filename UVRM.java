@@ -1,5 +1,7 @@
 //package tantal
 import java.util.Scanner;
+import javax.swing.*;  
+
 
 public class UVRM 
 {
@@ -45,7 +47,7 @@ public class UVRM
 		return String.format("x = %.2f\nv = %.2f\n", x, v);
 	}
 
-	public static void main(String[] args)
+	private static void main(String[] args)
 	{
 		parse();
 		x = calcx(x0, v0, a, t);
