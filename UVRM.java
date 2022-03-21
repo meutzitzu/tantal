@@ -47,7 +47,7 @@ public class UVRM
 		return String.format("x = %.2f\nv = %.2f\n", x, v);
 	}
 
-	private static void main(String[] args)
+	public static void main(String[] args)
 	{
 		parse();
 		x = calcx(x0, v0, a, t);
