@@ -7,12 +7,6 @@ public class FunctionSampler
 
 	FunctionSampler()
 	{
-
-	}
-
-	public static double f(double x)
-	{
-		return Math.sin(x);
 	}
 
 	public class SampledInterval
@@ -35,21 +29,31 @@ public class FunctionSampler
 		}
 	}
 
-	public SampledInterval sample(Input in)
+	public class ComputedInterval
+	{
+		double[] samples = null;
+		double[] values = null;
+
+
+
+		ComputedInterval(SampledInterval interval)
+		{
+			samples = interval.samples.clone();
+			values = new double[interval.samples.length];
+			for(int i=0; i<=samples.length; ++i)
+			{
+				values[i]=calc.(samples[i])
+			}
+		}
+	}
+	public SampledInterval getSample(Input in)
 	{
 		return new SampledInterval(in.interval, in.increment);
 	}
 
-	public class Interval
+	public Expression getExpr()
 	{
-		double end, start;
-		
-		Interval(double Istart, double Iend)
-		{
-			start = Istart;
-			end = Iend;
-		}
-
+		return new Expression();
 	}
 
 	public class Input
@@ -87,13 +91,13 @@ public class FunctionSampler
 		return input;
 	}
 
-	public double[] calcFunction( SampledInterval in)
+	public double[] evalExprInterval( SampledInterval in, Expression f)
 	{
 		double[] values = in.samples.clone();
 		for ( int i = 0; i<values.length; i++)
 		{
 		//values[i] = f(values[i]);
-		values[i] = f(values[i]);
+		values[i] = f.eval(values[i]);
 		}
 
 		return values;
@@ -109,8 +113,7 @@ public class FunctionSampler
 	public static void runfromCLI()
 	{
 		FunctionSampler sampler = new FunctionSampler();
-		
-		sampler.printresults(sampler.calcFunction(sampler.sample(sampler.getInputs())));
+		sampler.printresults(sampler.evalExprInterval(sampler.getSample(sampler.getInputs()), sampler.getExpr()));
 	}
 
 	public static void main(String[] args)

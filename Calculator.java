@@ -6,12 +6,12 @@ import java.awt.event.*;
 class Ui implements ActionListener 
 {
 	JFrame frame=new JFrame();
-	JButton button=new JButton("Click Me");
+	JButton button=new JButton("recompute");
 	JTextField field = new JTextField(16);
+	JTable table;
 	JLabel label = new JLabel("not computed yet");		
-	UVRM calc = new UVRM();
+	UVRM calc = new FunctionSampler();
 //	FunctionSampler calc = new FunctionSampler();
-
 
 	Ui()
 	{
@@ -19,9 +19,11 @@ class Ui implements ActionListener
 		buttonProperties();
 	}
 
+
 	public void prepareGUI()
 	{
-		frame.setTitle("shitty calculator");
+
+		frame.setTitle("shitty interval calculator");
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
 		frame.setBounds(200,200,400,400);
@@ -50,9 +52,8 @@ class Ui implements ActionListener
 	public void actionPerformed(ActionEvent e) 
 	{
 	    //Changing Background Color
-	    frame.getContentPane().setBackground(Color.pink);
-	    label.setText(calc.rez(Float.parseFloat(field.getText()) ,calc.calcv(1.0,2.0,Float.parseFloat(field.getText()))));
-	
+	    //frame.getContentPane().setBackground(Color.pink);
+		
 	}
 }
 
@@ -60,6 +61,15 @@ public class Calculator
 {
     public static void main(String[] args)
     {
+
+		try 
+		{
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
         new Ui();
     }
 }

@@ -29,7 +29,7 @@ public class SwingPlafTest
 		   // handle exception
 		}
 
-		new SwingApplication();
+		//new SwingApplication();
 
 		JFrame f=new JFrame();		//creating instance of JFrame
 
