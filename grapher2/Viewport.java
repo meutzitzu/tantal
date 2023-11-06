@@ -22,6 +22,8 @@ public class Viewport extends JFrame
 	public void paint(Graphics g) 
 	{
 ///*
+	Graphics2D g2 = (Graphics2D)g;
+
 		for ( int i = 0; i<xv.samples.length-1; i++)
 		{
 		//	g.drawLine(50 + (int)(i*scale*delta), 100+(int)(scale*Function1.eval(xv.samples[i])), 50+(int)((i+1)*delta*scale), 100+(int)(Function1.eval(xv.samples[i+1])));
